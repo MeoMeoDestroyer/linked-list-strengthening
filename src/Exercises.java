@@ -120,7 +120,28 @@ public class Exercises {
      * @return the head of the list with the first instance of the minimum value removed
      */
     public static ListNode removeMin(ListNode head) {
-        return null;
+        if (head == null) {
+            return null;
+    }
+        int minValue = min(head);      
+
+    // if head min, return head.next
+        if (head.data == minValue) {
+            return head.next;
+    }
+
+        ListNode current = head;
+    // while curr ! null and not minValue -> continue next
+    // if curr !null curr next = next next
+     
+        while (current.next != null && current.next.data != minValue) {
+            current = current.next;
+    }
+    
+        if (current.next != null) {
+            current.next = current.next.next;
+    }
+        return head;
     }
 
     /**
@@ -144,7 +165,24 @@ public class Exercises {
      * @return whether the values in bigList are twice the values in smallList
      */
     public static boolean isDoubled(ListNode smallList, ListNode bigList) {
-        return false;
+        if (smallList == null && bigList == null ) {
+            return true;
+        }
+        if (smallList == null || bigList == null) {
+            return false;
+
+        }
+        ListNode small = smallList;
+        ListNode big = bigList;
+
+        while (small != null && big != null) {
+            if (big.data != small.data * 2) {
+                return false;
+            }
+            small = small.next;
+            big = big.next;
+        }
+        return small == null && big == null;
     }
 
     /**
